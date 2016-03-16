@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+repositories {
+    jcenter()
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.rfm.mopubadaptersample"
+        minSdkVersion 10
+        targetSdkVersion 23
+        versionCode 2
+        versionName "1.1.1"
+    }
+    sourceSets {
+        main {
+            java {
+                srcDir ".."+File.separator+".."+File.separator+"RFMAdapter"
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:cardview-v7:23.1.1'
+    compile 'com.google.android.gms:play-services:8.3.0'
+    compile('com.mopub:mopub-sdk:3.10.0@aar') {
+        transitive = true
+    }
+    compile files('libs/RFMSDK.jar')
+}
