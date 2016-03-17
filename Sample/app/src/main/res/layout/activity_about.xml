@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/white_header"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            style="@style/RowItemCardView">
+
+            <RelativeLayout
+                style="@style/About.Row.Container">
+
+                <TextView
+                    android:id="@+id/rfm_sdk_version_label"
+                    style="@style/About.Row.Label"
+                    android:text="@string/rfm_sdk_version" />
+
+                <TextView
+                    android:id="@+id/rfm_sdk_version_textview"
+                    style="@style/About.Row.Value"
+                    android:layout_below="@id/rfm_sdk_version_label"
+                    android:text="" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            style="@style/RowItemCardView">
+
+            <RelativeLayout
+                style="@style/About.Row.Container">
+
+                <TextView
+                    android:id="@+id/mopub_sdk_version_label"
+                    style="@style/About.Row.Label"
+                    android:text="@string/mopub_sdk_version"/>
+
+                <TextView
+                    android:id="@+id/mopub_sdk_version_textview"
+                    style="@style/About.Row.Value"
+                    android:layout_below="@id/mopub_sdk_version_label"
+                    android:text=""/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            style="@style/RowItemCardView">
+
+            <RelativeLayout
+                style="@style/About.Row.Container"
+                android:background="@drawable/item_shadow">
+
+                <TextView
+                    android:id="@+id/sample_app_version_label"
+                    style="@style/About.Row.Label"
+                    android:text="@string/sample_app_version"/>
+
+                <TextView
+                    android:id="@+id/sample_version_textview"
+                    style="@style/About.Row.Value"
+                    android:layout_below="@id/sample_app_version_label"
+                    android:text=""/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+</LinearLayout>
+
