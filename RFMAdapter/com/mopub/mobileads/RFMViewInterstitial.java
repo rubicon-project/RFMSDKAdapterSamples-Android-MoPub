@@ -77,6 +77,7 @@ public class RFMViewInterstitial extends Activity {
             mMoPubInterstitial.destroy();
             mMoPubInterstitial = null;
         }
+        mMopubRFMViewInterstitial = null;
     } 
 	
 }

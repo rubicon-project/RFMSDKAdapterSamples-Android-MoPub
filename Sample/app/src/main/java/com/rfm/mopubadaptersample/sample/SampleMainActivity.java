@@ -4,13 +4,17 @@
  */
 package com.rfm.mopubadaptersample.sample;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -41,6 +45,7 @@ public class SampleMainActivity extends AppCompatActivity {
     private SampleListAdapter mSampleAdsListAdapter;
     private long firstAdUnitId = -1;
     private int count = 0;
+    private static final int READ_INPUT_JSON_PERMISSION_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,7 +189,7 @@ public class SampleMainActivity extends AppCompatActivity {
                         final AdUnit.AdType adType = adTypes[adTypeSpinner.getSelectedItemPosition()];
                         final AdUnit adUnit = new AdUnit(-1, testCaseName, siteId, adType,
                                 1, 0, AdUnit.LocationType.NORMAL, "6", "0.0", "0.0",
-                                "", 320, 50, true, "", true, "", "", "");
+                                "", 320, 50, true, "", true, "", "", "", 0);
                         addAdUnit(adUnit);
 
                         dialog.dismiss();
@@ -211,7 +216,6 @@ public class SampleMainActivity extends AppCompatActivity {
         firstAdUnitId = adUnits.get(0).getId();
         int count = 0;
         for (final AdUnit adUnit : adUnits) {
-            Log.d(LOG_TAG, "_ID: "+ adUnit.getId());
             if (adUnit.isCustom() && !addedUserDefinedHeader) {
                 addedUserDefinedHeader = true;
                 mSampleAdsListAdapter.add(new SampleListHeader("USER DEFINED"));
@@ -278,11 +282,43 @@ public class SampleMainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 resetCount();
                 if (clickCount == 10) {
-                    uploadJsonToDB();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        getPermissionToReadInputJson();
+                    } else {
+                        uploadJsonToDB();
+                    }
                 }
                 clickCount++;
             }
         });
+    }
+
+    public void getPermissionToReadInputJson() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        READ_INPUT_JSON_PERMISSION_REQUEST);
+            } else {
+                uploadJsonToDB();
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case READ_INPUT_JSON_PERMISSION_REQUEST: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    uploadJsonToDB();
+                } else {
+                    Utils.snackbar(SampleMainActivity.this, getResources().getString(R.string.json_file_no_permission), false);
+                }
+                return;
+            }
+        }
     }
 
     private void uploadJsonToDB() {

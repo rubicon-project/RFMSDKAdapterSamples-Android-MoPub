@@ -207,10 +207,12 @@ public class RFMMopubInterstitialAdapter extends CustomEventInterstitial {
 			if (mRFMInterstitialAdView != null) {
 				mRFMInterstitialAdView.setRFMAdViewListener(null);
 				mRFMInterstitialAdView.rfmAdViewDestroy();
+				mRFMInterstitialAdView = null;
 			}
 		} catch (Exception e) {
 			log("CustomEventInterstitial: Failed to clean custom interstitial with error,  "+e.toString());
 		}
+		mCustomEventInterstitialListener = null;
 	}
 	
 	@SuppressWarnings("deprecation")
