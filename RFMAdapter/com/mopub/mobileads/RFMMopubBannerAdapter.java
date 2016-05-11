@@ -48,7 +48,7 @@ public class RFMMopubBannerAdapter extends CustomEventBanner {
 	private HashMap<String, String> localTargetingInfoHM = new HashMap<String, String>();
 	
 	RFMMopubBannerAdapter() {
-		localTargetingInfoHM.put("adp_version", "mp_adp_1.1.1");
+		localTargetingInfoHM.put("adp_version", "mp_adp_1.2.0");
 	}
 
 	@Override

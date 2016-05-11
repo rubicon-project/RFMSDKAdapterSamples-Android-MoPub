@@ -12,15 +12,15 @@ android {
         applicationId "com.rfm.mopubadaptersample"
         minSdkVersion 10
         targetSdkVersion 23
-        versionCode 2
-        versionName "1.1.1"
+        versionCode 3
+        versionName "1.2.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     sourceSets {
         main {
             java {
-                srcDir ".."+File.separator+".."+File.separator+"RFMAdapter"
+                srcDir ".."+File.separator+".."+File.separator+"RFMAdapter"+File.separator+"sourcecode"
             }
         }
         androidTest.setRoot('src/test')
@@ -48,7 +48,13 @@ dependencies {
     }
 
     androidTestCompile 'com.android.support:support-annotations:23.3.0'
+    androidTestCompile 'com.android.support.test:runner:0.4.1'
+    androidTestCompile 'com.android.support.test:rules:0.4.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-web:2.2.1'
 
 
     compile files('libs/RFMSDK.jar')
+
+    // For development
+    //compile project(':SDKProject')
 }

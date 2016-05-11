@@ -50,7 +50,7 @@ public class RFMMopubInterstitialAdapter extends CustomEventInterstitial {
 	private HashMap<String, String> localTargetingInfoHM = new HashMap<String, String>();
 	
 	RFMMopubInterstitialAdapter() {
-		localTargetingInfoHM.put("adp_version", "mp_adp_1.1.1");
+		localTargetingInfoHM.put("adp_version", "mp_adp_1.2.0");
 	}
 	
 	@Override
