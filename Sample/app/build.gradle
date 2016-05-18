@@ -20,7 +20,7 @@ android {
     sourceSets {
         main {
             java {
-                srcDir ".."+File.separator+".."+File.separator+"RFMAdapter"+File.separator+"sourcecode"
+                srcDir ".."+File.separator+".."+File.separator+"RFMAdapter"
             }
         }
         androidTest.setRoot('src/test')
