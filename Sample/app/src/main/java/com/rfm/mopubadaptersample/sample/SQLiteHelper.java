@@ -79,25 +79,25 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
         adUnitList.add(new AdUnit(-1, "Mopub Banner", "b195f8dd8ded45fe847ad89ed1d016da",
                 AdUnit.AdType.MOPUB_BANNER_AD, 1, 0, AdUnit.LocationType.NORMAL, "6","0.0", "0.0",
-                "", 320, 50, true, "", false, "", "", ""));
+                "", 320, 50, true, "", false, "", "", "", 1));
         adUnitList.add(new AdUnit(-1, "Mopub Interstitial", "24534e1901884e398f1253216226017e",
                 AdUnit.AdType.MOPUB_INTERSTITIAL_AD, 1, 0, AdUnit.LocationType.NORMAL, "6", "0.0", "0.0",
-                "", 320, 50, true, "", false, "", "", ""));
+                "", 320, 50, true, "", false, "", "", "", 2));
 
         adUnitList.add(new AdUnit(-1, "RFM/Mopub Adpt Banner", "40b636994ce84a788c99d6d75f87cbbb",
                 AdUnit.AdType.MOPUB_BANNER_AD, 1, 0, AdUnit.LocationType.NORMAL, "6", "0", "0",
-                "", 320, 50, true, "", false, "", "", ""));
+                "", 320, 50, true, "", false, "http://mrp.rubiconproject.com/", "6C62DFC0EF710133146B22000B3510F7", "111008", 3));
         adUnitList.add(new AdUnit(-1, "RFM/Mopub Adpt Interstitial", "2ed5b3a708f649209aeb7537ccb3e4bd",
                 AdUnit.AdType.MOPUB_INTERSTITIAL_AD, 1, 0, AdUnit.LocationType.NORMAL, "6", "0.0", "0.0",
-                "", 320, 50, true, "", false, "", "", ""));
+                "", 320, 480, true, "", false, "http://mrp.rubiconproject.com/", "3C19B350EF73013312DE22000B2E019E", "111008", 4));
 
-        adUnitList.add(new AdUnit(-1, "RFM/Mopub FastLane Banner", "d4508358cac24c539af7b3180100ba0a",
+        adUnitList.add(new AdUnit(-1, "RFM/Mopub FastLane Banner", "0eecb7d91ac543ba83ef98b54c38168b",
                 AdUnit.AdType.FASTLANE_MOPUB_BANNER_AD, 1, 0, AdUnit.LocationType.NORMAL, "6", "0", "0",
-                "", 320, 50, true, "", false, "", "", ""));
+                "", 320, 50, true, "0", false, "http://mrp.rubiconproject.com/", "50144540EF720133146F22000B3510F7", "111008", 5));
 
-        adUnitList.add(new AdUnit(-1, "RFM/Mopub FastLane Interstitial", "3042943b254b42e3a91f3c4fa75b6324",
+        adUnitList.add(new AdUnit(-1, "RFM/Mopub FastLane Interstitial", "04f98af79bed42de97090d7203903e54",
                 AdUnit.AdType.FASTLANE_MOPUB_INTERSTITIAL_AD, 1, 0, AdUnit.LocationType.NORMAL, "6", "0", "0",
-                "", 320, 50, true, "", false, "", "", ""));
+                "", 320, 480, true, "0", false, "http://mrp.rubiconproject.com", "E24F8D60EF73013312E122000B2E019E", "111008", 6));
 
         sqLiteDatabase.execSQL(DATABASE_CREATE);
         sqLiteDatabase.beginTransaction();

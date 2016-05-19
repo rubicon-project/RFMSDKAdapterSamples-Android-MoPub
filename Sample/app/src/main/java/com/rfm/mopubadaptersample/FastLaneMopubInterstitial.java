@@ -66,7 +66,10 @@ public class FastLaneMopubInterstitial extends BaseActivity implements Interstit
     }
 
     private void createRFMFastLaneRequest() {
-        rfmAdRequest.setRFMParams("http://mrp.rubiconproject.com/", "111315", "6EF66140AC6901330EE722000B2E019E");
+        if(rfmAdId != null && !rfmAdId.trim().equalsIgnoreCase("0")) {
+            rfmAdRequest.setRFMTestAdId(rfmAdId);
+        }
+        rfmAdRequest.setRFMParams(rfmServer, rfmPubId, rfmAppId);
         rfmAdRequest.setRFMAdAsInterstitial(true);
     }
 

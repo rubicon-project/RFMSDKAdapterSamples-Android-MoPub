@@ -50,7 +50,7 @@ public class RFMMopubInterstitialAdapter extends CustomEventInterstitial {
 	private HashMap<String, String> localTargetingInfoHM = new HashMap<String, String>();
 	
 	RFMMopubInterstitialAdapter() {
-		localTargetingInfoHM.put("adp_version", "mp_adp_1.1.1");
+		localTargetingInfoHM.put("adp_version", "mp_adp_1.2.0");
 	}
 	
 	@Override
@@ -207,10 +207,12 @@ public class RFMMopubInterstitialAdapter extends CustomEventInterstitial {
 			if (mRFMInterstitialAdView != null) {
 				mRFMInterstitialAdView.setRFMAdViewListener(null);
 				mRFMInterstitialAdView.rfmAdViewDestroy();
+				mRFMInterstitialAdView = null;
 			}
 		} catch (Exception e) {
 			log("CustomEventInterstitial: Failed to clean custom interstitial with error,  "+e.toString());
 		}
+		mCustomEventInterstitialListener = null;
 	}
 	
 	@SuppressWarnings("deprecation")

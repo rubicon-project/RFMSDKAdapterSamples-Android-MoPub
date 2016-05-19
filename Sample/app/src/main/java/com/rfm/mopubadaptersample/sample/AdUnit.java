@@ -30,6 +30,7 @@ public class AdUnit implements Comparable<AdUnit> {
     public static final String TEST_MODE = "testMode";
     public static final String AD_ID = "adId";
     public static final String IS_CUSTOM = "isCustom";
+    public static final String COUNT = "count";
 
     private long mId;
     private String mTestCaseName;
@@ -118,7 +119,7 @@ public class AdUnit implements Comparable<AdUnit> {
                   int _refreshInterval, LocationType _locationType, String _locationPrecision, String _lat, String _long,
                   String _targetingKeyValue, int _adWidth, int _adHeight,
                   boolean _testMode, String _adId, boolean _isCustom,
-                  String _rfmServer, String _appId, String _pubId) {
+                  String _rfmServer, String _appId, String _pubId, int _count) {
         mId = id;
         mTestCaseName = _testCaseName;
         mSiteId = _siteId;
@@ -135,6 +136,7 @@ public class AdUnit implements Comparable<AdUnit> {
         mTestMode = _testMode;
         mAdId = _adId;
         mIsCustom = _isCustom;
+        mCount = _count;
 
         mRFMServer = _rfmServer;
         mAppId = _appId;
@@ -256,6 +258,7 @@ public class AdUnit implements Comparable<AdUnit> {
         bundle.putBoolean(TEST_MODE, mTestMode);
         bundle.putString(AD_ID, mAdId);
         bundle.putBoolean(IS_CUSTOM, mIsCustom);
+        bundle.putInt(COUNT, mCount);
 
         // RFM Sample specific
         bundle.putString(RFM_SERVER, mRFMServer);
@@ -282,6 +285,7 @@ public class AdUnit implements Comparable<AdUnit> {
         final boolean testMode = bundle.getBoolean(TEST_MODE, true);
         final String adId = bundle.getString(AD_ID);
         final boolean isCustom = bundle.getBoolean(IS_CUSTOM, false);
+        final int count = bundle.getInt(COUNT);
 
         // RFM Sample specific
         final String rfmServer = bundle.getString(RFM_SERVER);
@@ -290,7 +294,7 @@ public class AdUnit implements Comparable<AdUnit> {
 
         final AdUnit adUnit = new AdUnit(id, testCaseName, siteId, adType, refreshCount, refreshInterval,
                                 locationType, locationPrecision, lat, lng, targetingKeyValue, adWidth, adHeight, testMode, adId, isCustom,
-                                rfmServer, appId, pubId);
+                                rfmServer, appId, pubId, count);
         return adUnit;
     }
 

@@ -59,6 +59,11 @@ public class JsonToSQLLite {
 
                 final String locationPrecision = _jsonObject.getString(AdUnit.LOCATION_PRECISION);
 
+                final String rfmServer = _jsonObject.getString(AdUnit.RFM_SERVER);
+                final String rfmAdId = _jsonObject.getString(AdUnit.AD_ID);
+                final String rmfPubId = _jsonObject.getString(AdUnit.PUB_ID);
+                final String rfmAppId = _jsonObject.getString(AdUnit.APP_ID);
+
                 String adWidthStr;
                 if (_jsonObject.has(AdUnit.AD_WIDTH)) {
                     adWidthStr = _jsonObject.getString(AdUnit.AD_WIDTH);
@@ -83,7 +88,7 @@ public class JsonToSQLLite {
 
                 final AdUnit adUnit = new AdUnit(-1, testCaseName, siteId, adType,
                         1, 0, locationType, locationPrecision, "0.0", "0.0",
-                        "", adWidth, adHeight, true, "", true, "", "", "");
+                        "", adWidth, adHeight, true, rfmAdId, true, rfmServer, rfmAppId, rmfPubId, 0);
 
                 AdUnitDataSource adUnitDataSource = AdUnitDataSource.getInstance(context);
                 adUnitDataSource.createAdUnit(adUnit);

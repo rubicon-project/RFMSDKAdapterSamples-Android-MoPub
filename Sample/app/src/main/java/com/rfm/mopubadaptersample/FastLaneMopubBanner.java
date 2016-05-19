@@ -69,8 +69,11 @@ public class FastLaneMopubBanner extends BaseActivity implements BannerAdListene
     }
 
     private void createRFMFastLaneRequest() {
-        rfmAdRequest.setRFMParams("http://mrp.rubiconproject.com/", "111315", "792A6740AA8B01330EE222000B2E019E");
-        rfmAdRequest.setAdDimensionParams(320, 50);
+        if(rfmAdId != null && !rfmAdId.trim().equalsIgnoreCase("0")) {
+            rfmAdRequest.setRFMTestAdId(rfmAdId);
+        }
+        rfmAdRequest.setRFMParams(rfmServer, rfmPubId, rfmAppId);
+        rfmAdRequest.setAdDimensionParams(mAdWidth, mAdHeight);
     }
 
     private void loadMoPubView(final String adUnitId) {

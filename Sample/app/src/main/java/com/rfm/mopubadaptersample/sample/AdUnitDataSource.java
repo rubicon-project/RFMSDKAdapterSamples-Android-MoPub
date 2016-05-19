@@ -215,7 +215,7 @@ public class AdUnitDataSource {
 
         return new AdUnit(id, testCaseName, siteId, adType, refreshCount, refreshInterval,
                 AdUnit.LocationType.fromLocationName(locationType), locationPrecision, lat, lng, targetingKeyValue, adWidth, adHeight,
-                testMode == 1, adId, isCustom == 1, rfmServer, appId, pubId);
+                testMode == 1, adId, isCustom == 1, rfmServer, appId, pubId, 0);
     }
 
     void cleanUp() {

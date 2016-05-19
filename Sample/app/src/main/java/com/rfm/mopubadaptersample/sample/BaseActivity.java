@@ -30,6 +30,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected String LOG_TAG = "BaseActivity";
 
     protected String adUnitTitle;
+    protected String rowNumber;
     protected long adUnitId;
     protected String siteId;
 
@@ -69,9 +70,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         AdUnit adUnit = AdUnit.fromBundle(extras);
 
         adUnitTitle = adUnit.getTestCaseName();
-
+        rowNumber = String.valueOf(adUnit.getCount());
         adUnitId = adUnit.getId();
-
         siteId = adUnit.getSiteId();
 
         rfmAdId = adUnit.getAdId();
@@ -137,7 +137,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle(adUnitTitle);
+        collapsingToolbar.setTitle("(" + rowNumber + ") " + adUnitTitle);
 
         TextView backdropSubtext = (TextView) findViewById(R.id.backdrop_subtext);
         backdropSubtext.setText(getResources().getString(R.string.site_id) + siteId);
