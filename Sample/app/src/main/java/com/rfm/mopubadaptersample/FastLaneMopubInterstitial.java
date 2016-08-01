@@ -7,14 +7,12 @@ package com.rfm.mopubadaptersample;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.mopub.common.MoPub;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubInterstitial;
 import com.mopub.mobileads.MoPubInterstitial.InterstitialAdListener;
-import com.mopub.mobileads.MoPubView;
 import com.rfm.mopubadaptersample.sample.BaseActivity;
 import com.rfm.sdk.RFMAdRequest;
 import com.rfm.sdk.RFMFastLane;
@@ -23,10 +21,9 @@ import java.util.Map;
 
 public class FastLaneMopubInterstitial extends BaseActivity implements InterstitialAdListener {
 	
-	private final String LOG_TAG = "MopubInterstitial";
+	private final String LOG_TAG = "FastLaneMopubInterstitial";
 	private Context mContext;
 	private MoPubInterstitial mMoPubInterstitial;
-	private MoPubView mMoPubView;
 
     private RFMFastLane rfmFastLane;
     private RFMAdRequest rfmAdRequest;
@@ -36,9 +33,6 @@ public class FastLaneMopubInterstitial extends BaseActivity implements Interstit
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mopub_interstitial);
         mContext = getApplicationContext();
-
-
-        mMoPubView = (MoPubView) findViewById(R.id.interstitial_mopubview);
 
         // Set location awareness and precision globally for your app:
         MoPub.setLocationAwareness(locationAwareness);
@@ -53,16 +47,7 @@ public class FastLaneMopubInterstitial extends BaseActivity implements Interstit
 
     @Override
     public void updateAdView() {
-        if (mAdWidth != 0)
-            mMoPubView.getLayoutParams().width = mAdWidth * displayDesity;
-        if (mAdHeight != 0) {
-            if (mAdHeight == -1) {
-                mMoPubView.getLayoutParams().height = displayHeight;
-            } else {
-                mMoPubView.getLayoutParams().height = mAdHeight * displayDesity;
-            }
-        }
-        mMoPubView.setTesting(adTestMode);
+
     }
 
     private void createRFMFastLaneRequest() {
@@ -118,7 +103,6 @@ public class FastLaneMopubInterstitial extends BaseActivity implements Interstit
     public void onInterstitialLoaded(MoPubInterstitial interstitial) {
         logToast(mContext, "Interstitial loaded.");
         if (mMoPubInterstitial != null) {
-            mMoPubView.setVisibility(View.VISIBLE);
             mMoPubInterstitial.show();
 
             mNumberOfSuccess = mNumberOfSuccess + 1;
@@ -160,11 +144,7 @@ public class FastLaneMopubInterstitial extends BaseActivity implements Interstit
 	@Override 
     public void onDestroy() { 
 		super.onDestroy();        
-        if (mMoPubView!=null) {
-        	mMoPubView.destroy();
-        	mMoPubView = null;
-        }
-		
+
         if (mMoPubInterstitial != null) {
         	mMoPubInterstitial.setInterstitialAdListener(null);
             mMoPubInterstitial.destroy();

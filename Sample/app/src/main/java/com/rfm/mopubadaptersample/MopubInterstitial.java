@@ -8,23 +8,19 @@ import com.mopub.common.MoPub;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubInterstitial;
 import com.mopub.mobileads.MoPubInterstitial.InterstitialAdListener;
-import com.mopub.mobileads.MoPubView;
 import com.rfm.mopubadaptersample.sample.BaseActivity;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 public class MopubInterstitial extends BaseActivity implements InterstitialAdListener {
-	
-	private final String LOG_TAG = "MopubInterstitial";
-	private Context mContext;
-	private MoPubInterstitial mMoPubInterstitial;
-	private MoPubView mMoPubView;
-	
+
+    private final String LOG_TAG = "MopubInterstitial";
+    private Context mContext;
+    private MoPubInterstitial mMoPubInterstitial;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +28,7 @@ public class MopubInterstitial extends BaseActivity implements InterstitialAdLis
         mContext = getApplicationContext();
 
 
-        mMoPubView = (MoPubView) findViewById(R.id.interstitial_mopubview);
-		String interstitialAdUnitId = siteId;
+        String interstitialAdUnitId = siteId;
         mMoPubInterstitial = new MoPubInterstitial(MopubInterstitial.this, interstitialAdUnitId);
         mMoPubInterstitial.setInterstitialAdListener(MopubInterstitial.this);
         mMoPubInterstitial.setKeywords(null);
@@ -47,16 +42,6 @@ public class MopubInterstitial extends BaseActivity implements InterstitialAdLis
 
     @Override
     public void updateAdView() {
-        if (mAdWidth != 0)
-            mMoPubView.getLayoutParams().width = mAdWidth * displayDesity;
-        if (mAdHeight != 0) {
-            if (mAdHeight == -1) {
-                mMoPubView.getLayoutParams().height = displayHeight;
-            } else {
-                mMoPubView.getLayoutParams().height = mAdHeight * displayDesity;
-            }
-        }
-        mMoPubView.setTesting(adTestMode);
         mMoPubInterstitial.setTesting(adTestMode);
     }
 
@@ -65,7 +50,6 @@ public class MopubInterstitial extends BaseActivity implements InterstitialAdLis
     public void onInterstitialLoaded(MoPubInterstitial interstitial) {
         logToast(mContext, "Interstitial loaded.");
         if (mMoPubInterstitial != null) {
-            mMoPubView.setVisibility(View.VISIBLE);
             mMoPubInterstitial.show();
 
             mNumberOfSuccess = mNumberOfSuccess + 1;
@@ -104,20 +88,16 @@ public class MopubInterstitial extends BaseActivity implements InterstitialAdLis
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
-	@Override 
-    public void onDestroy() { 
-		super.onDestroy();        
-        if (mMoPubView!=null) {
-        	mMoPubView.destroy();
-        	mMoPubView = null;
-        }
-		
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
         if (mMoPubInterstitial != null) {
-        	mMoPubInterstitial.setInterstitialAdListener(null);
+            mMoPubInterstitial.setInterstitialAdListener(null);
             mMoPubInterstitial.destroy();
-            mMoPubInterstitial = null;            
+            mMoPubInterstitial = null;
         }
-    } 
+    }
 
     @Override
     public void loadAd() {

@@ -7,10 +7,12 @@ package com.rfm.mopubadaptersample.sample;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.rfm.mopubadaptersample.FastLaneMopubBanner;
 import com.rfm.mopubadaptersample.FastLaneMopubInterstitial;
 import com.rfm.mopubadaptersample.MopubBanner;
 import com.rfm.mopubadaptersample.MopubInterstitial;
+import com.rfm.mopubadaptersample.MopubRewardedVideoInterstitial;
 
 public class AdUnit implements Comparable<AdUnit> {
 
@@ -86,7 +88,8 @@ public class AdUnit implements Comparable<AdUnit> {
         MOPUB_BANNER_AD ("MopubBanner", MopubBanner.class),
         MOPUB_INTERSTITIAL_AD ("MopubInterstitial", MopubInterstitial.class),
         FASTLANE_MOPUB_BANNER_AD ("FastLaneMopubBanner", FastLaneMopubBanner.class),
-        FASTLANE_MOPUB_INTERSTITIAL_AD ("FastLaneMopubInterstitial", FastLaneMopubInterstitial.class);
+        FASTLANE_MOPUB_INTERSTITIAL_AD ("FastLaneMopubInterstitial", FastLaneMopubInterstitial.class),
+        REWARDED_VIDEO_INTERSTITIAL_AD ("MopubRewardedVideoInterstitial", MopubRewardedVideoInterstitial.class);
 
         String getName() {
             return name;

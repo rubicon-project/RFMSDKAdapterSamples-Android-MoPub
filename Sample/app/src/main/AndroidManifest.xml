@@ -53,8 +53,9 @@
         </activity>
 
         <activity
-            android:name="com.mopub.mobileads.RFMViewInterstitial"
-            android:label="@string/interstitial_ad_header"
+            android:name=".MopubRewardedVideoInterstitial"
+            android:label="@string/app_name"
+            android:parentActivityName=".sample.SampleMainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>
 
@@ -73,12 +74,16 @@
             android:configChanges="keyboardHidden|orientation|screenSize" >
         </activity>
 
-        <!-- com.rfm.sdk.HTMLBrowserView: required for RFM SDK -->
+        <!-- Required for RFM SDK to show brower view on click of ad -->
         <activity android:name="com.rfm.sdk.HTMLBrowserView"
-            android:configChanges="orientation"/>
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
 
-        <!-- com.rfm.sdk.MraidVideoPlayerActivity: required for RFM SDK to serve video ads -->
+        <!-- Required for RFM SDK to serve video ads -->
         <activity android:name="com.rfm.sdk.MraidVideoPlayerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+
+        <!-- com.rfm.sdk.RFMActivity: required for RFM SDK to serve Mraid, VAST & Rewarded Video Interstitial ads -->
+        <activity android:name="com.rfm.sdk.RFMActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"/>
 
 
@@ -87,6 +92,7 @@
 
         <activity android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+
 
 
         <activity android:name="com.mopub.mobileads.MoPubActivity"
@@ -105,7 +111,6 @@
             android:configChanges="keyboardHidden|orientation|keyboard" />
         <activity android:name="com.millennialmedia.android.VideoPlayer"
             android:configChanges="keyboardHidden|orientation|keyboard" />
-
 
     </application>
 

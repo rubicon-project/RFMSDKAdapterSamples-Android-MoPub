@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class FastLaneMopubBanner extends BaseActivity implements BannerAdListener {
 	
-	private final String LOG_TAG = "MopubBanner";
+	private final String LOG_TAG = "FastLaneMopubBanner";
 	private Context mContext;
 	private MoPubView mMoPubView;
 

@@ -97,7 +97,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
         adUnitList.add(new AdUnit(-1, "RFM/Mopub FastLane Interstitial", "04f98af79bed42de97090d7203903e54",
                 AdUnit.AdType.FASTLANE_MOPUB_INTERSTITIAL_AD, 1, 0, AdUnit.LocationType.NORMAL, "6", "0", "0",
-                "", 320, 480, true, "0", false, "http://mrp.rubiconproject.com", "E24F8D60EF73013312E122000B2E019E", "111008", 6));
+                "", 320, 480, true, "0", false, "http://mrp.rubiconproject.com/", "E24F8D60EF73013312E122000B2E019E", "111008", 6));
+
+        adUnitList.add(new AdUnit(-1, "RFM/Mopub Rewarded Video Interstitial", "dab8cb19b71742d3a142a969697919b3",
+                AdUnit.AdType.REWARDED_VIDEO_INTERSTITIAL_AD, 1, 0, AdUnit.LocationType.NORMAL, "6", "0.0", "0.0",
+                "", 320, 480, true, "0", false, "http://mrp.rubiconproject.com/", "CDBBF1A037F60134162922000B3510F7", "111315", 7));
 
         sqLiteDatabase.execSQL(DATABASE_CREATE);
         sqLiteDatabase.beginTransaction();
