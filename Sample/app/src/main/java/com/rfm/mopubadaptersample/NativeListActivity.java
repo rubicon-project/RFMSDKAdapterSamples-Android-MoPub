@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016. Rubicon Project. All rights reserved
+ *
+ */
 package com.rfm.mopubadaptersample;
 
 import android.location.Location;
