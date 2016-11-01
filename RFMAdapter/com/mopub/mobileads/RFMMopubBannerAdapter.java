@@ -100,7 +100,6 @@ public class RFMMopubBannerAdapter extends CustomEventBanner {
         
         HashMap<String, String> targetingParamsHM = getTargetingParams(serverExtras);
         mRFMAdRequest.setTargetingParams(targetingParamsHM);
-        mRFMBannerAdView.enableHWAcceleration(true);
         
         setRFMAdViewListener();
 
@@ -146,7 +145,7 @@ public class RFMMopubBannerAdapter extends CustomEventBanner {
  			}
 
  			@Override
- 			public void onAdRequested(RFMAdView adView, String requestUrl, boolean adRequestSuccess) {
+ 			public void onAdRequested(String requestUrl, boolean adRequestSuccess) {
  				log("RFM Ad: Requesting Url:" + requestUrl);	
  			}
 

@@ -12,4 +12,5 @@
     <dimen name="backdrop_maintext_marginbottom">65dp</dimen>
 
     <dimen name="ad_container_height">65dp</dimen>
+    <dimen name="native_main_image_height">200dp</dimen>
 </resources>

@@ -113,7 +113,7 @@ public class RFMMopubInterstitialAdapter extends CustomEventInterstitial {
 		//Optional listener for RFMAd status
 		mRFMInterstitialAdView.setRFMInterstitialAdListener(new RFMInterstitialAdViewListener() {
 			@Override
-			public void onAdRequested(RFMAdView adView, String requestUrl, boolean adRequestSuccess) {
+			public void onAdRequested(String requestUrl, boolean adRequestSuccess) {
 				log("RFM Ad: Requesting Url:" + requestUrl);
 			}
 

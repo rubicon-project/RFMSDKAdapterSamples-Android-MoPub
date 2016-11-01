@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2016. Rubicon Project. All rights reserved
- *
- */
 package com.rfm.mopubadaptersample.sample;
 
 import android.content.Context;
@@ -67,39 +63,40 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstance);
 
         Bundle extras = getIntent().getExtras();
-        AdUnit adUnit = AdUnit.fromBundle(extras);
+        if (extras != null) {
+            AdUnit adUnit = AdUnit.fromBundle(extras);
 
-        adUnitTitle = adUnit.getTestCaseName();
-        rowNumber = String.valueOf(adUnit.getCount());
-        adUnitId = adUnit.getId();
-        siteId = adUnit.getSiteId();
+            adUnitTitle = adUnit.getTestCaseName();
+            rowNumber = String.valueOf(adUnit.getCount());
+            adUnitId = adUnit.getId();
+            siteId = adUnit.getSiteId();
 
-        rfmAdId = adUnit.getAdId();
-        rfmServer = adUnit.getRfmServer();
-        rfmPubId = adUnit.getPubId();
-        rfmAppId = adUnit.getAppId();
-        adTestMode = adUnit.getTestMode();
+            rfmAdId = adUnit.getAdId();
+            rfmServer = adUnit.getRfmServer();
+            rfmPubId = adUnit.getPubId();
+            rfmAppId = adUnit.getAppId();
+            adTestMode = adUnit.getTestMode();
 
-        mAdWidth = adUnit.getAdWidth();
-        mAdHeight = adUnit.getAdHeight();
+            mAdWidth = adUnit.getAdWidth();
+            mAdHeight = adUnit.getAdHeight();
 
-        displayDesity = (int)getResources().getDisplayMetrics().density;
-        WindowManager mWinMgr = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-        displayHeight = mWinMgr.getDefaultDisplay().getHeight();
+            displayDesity = (int) getResources().getDisplayMetrics().density;
+            WindowManager mWinMgr = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+            displayHeight = mWinMgr.getDefaultDisplay().getHeight();
 
-        if (adUnit.getLocationType() != null) {
-            if (adUnit.getLocationType().ordinal() == 0) {
-                locationAwareness = MoPub.LocationAwareness.NORMAL;
-            } else if (adUnit.getLocationType().ordinal() == 1) {
-                locationAwareness = MoPub.LocationAwareness.TRUNCATED;
-            } else if (adUnit.getLocationType().ordinal() == 2) {
-                locationAwareness = MoPub.LocationAwareness.DISABLED;
+            if (adUnit.getLocationType() != null) {
+                if (adUnit.getLocationType().ordinal() == 0) {
+                    locationAwareness = MoPub.LocationAwareness.NORMAL;
+                } else if (adUnit.getLocationType().ordinal() == 1) {
+                    locationAwareness = MoPub.LocationAwareness.TRUNCATED;
+                } else if (adUnit.getLocationType().ordinal() == 2) {
+                    locationAwareness = MoPub.LocationAwareness.DISABLED;
+                }
             }
+
+            if (!adUnit.getLat().isEmpty())
+                locPrecision = Integer.parseInt(adUnit.getLocationPrecision());
         }
-
-        if (!adUnit.getLat().isEmpty())
-            locPrecision = Integer.parseInt(adUnit.getLocationPrecision());
-
         registerReceiver(mReceiver, new IntentFilter(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED));
 
     }
@@ -157,62 +154,75 @@ public abstract class BaseActivity extends AppCompatActivity {
         });
 
         mLogText = (TextView) findViewById(R.id.log_text);
+        countersTextViewContent = (TextView) findViewById(R.id.counters_text_view_content);
 
         RelativeLayout counters_text_view_title = (RelativeLayout) findViewById(R.id.expand_list_container);
-        countersTextViewContent = (TextView) findViewById(R.id.counters_text_view_content);
-        counters_text_view_title.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView expandButton = (ImageView) findViewById(R.id.expand_button);
-                if (isCounterViewExpanded) {
-                    expandButton.setImageResource(R.drawable.ic_arrow_up_white);
-                    ExpandCollapseHelper.collapse(countersTextViewContent);
-                } else {
-                    expandButton.setImageResource(R.drawable.ic_arrow_down_white);
-                    ExpandCollapseHelper.expand(countersTextViewContent);
+        if(counters_text_view_title != null) {
+            counters_text_view_title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ImageView expandButton = (ImageView) findViewById(R.id.expand_button);
+                    if (isCounterViewExpanded) {
+                        expandButton.setImageResource(R.drawable.ic_arrow_up_white);
+                        ExpandCollapseHelper.collapse(countersTextViewContent);
+                    } else {
+                        expandButton.setImageResource(R.drawable.ic_arrow_down_white);
+                        ExpandCollapseHelper.expand(countersTextViewContent);
+                    }
+                    isCounterViewExpanded = !isCounterViewExpanded;
                 }
-                isCounterViewExpanded = !isCounterViewExpanded;
-            }
-        });
+            });
+        }
 
-        RelativeLayout logs_text_view_title = (RelativeLayout) findViewById(R.id.logs_text_view_content);
         final TextView logText = (TextView) findViewById(R.id.log_text);
-        logs_text_view_title.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView expandButton2 = (ImageView) findViewById(R.id.expand_button_2);
-                if (isLogsViewExpanded) {
-                    expandButton2.setImageResource(R.drawable.ic_arrow_up_white);
-                    ExpandCollapseHelper.collapse(logText);
-                } else {
-                    expandButton2.setImageResource(R.drawable.ic_arrow_down_white);
-                    ExpandCollapseHelper.expand(logText);
+        RelativeLayout logs_text_view_title = (RelativeLayout) findViewById(R.id.logs_text_view_content);
+        if(logs_text_view_title != null) {
+            logs_text_view_title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ImageView expandButton2 = (ImageView) findViewById(R.id.expand_button_2);
+                    if (isLogsViewExpanded) {
+                        expandButton2.setImageResource(R.drawable.ic_arrow_up_white);
+                        ExpandCollapseHelper.collapse(logText);
+                    } else {
+                        expandButton2.setImageResource(R.drawable.ic_arrow_down_white);
+                        ExpandCollapseHelper.expand(logText);
+                    }
+                    isLogsViewExpanded = !isLogsViewExpanded;
                 }
-                isLogsViewExpanded = !isLogsViewExpanded;
-            }
-        });
+            });
+        }
 
         ImageView clearButton = (ImageView) findViewById(R.id.clear_button);
-        clearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mNumberOfRequests  = 0;
-                mNumberOfSuccess  = 0;
-                mNumberOfFailures  = 0;
-                updateCountersView();
-            }
-        });
+        if(clearButton != null) {
+            clearButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mNumberOfRequests = 0;
+                    mNumberOfSuccess = 0;
+                    mNumberOfFailures = 0;
+                    updateCountersView();
+                }
+            });
+        }
 
         ImageView clearButton2 = (ImageView) findViewById(R.id.clear_button_2);
-        clearButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearLogsView();
-            }
-        });
+        if(clearButton2 != null) {
+            clearButton2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clearLogsView();
+                }
+            });
+        }
 
-        updateCountersView();
-        clearLogsView();
+        if(countersTextViewContent != null) {
+            updateCountersView();
+        }
+
+        if(mLogText != null) {
+            clearLogsView();
+        }
     }
 
     protected void updateCountersView() {

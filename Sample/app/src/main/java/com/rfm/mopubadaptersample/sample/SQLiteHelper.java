@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2016. Rubicon Project. All rights reserved
- *
- */
 package com.rfm.mopubadaptersample.sample;
 
 import android.content.ContentValues;
@@ -9,7 +5,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +98,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 AdUnit.AdType.REWARDED_VIDEO_INTERSTITIAL_AD, 1, 0, AdUnit.LocationType.NORMAL, "6", "0.0", "0.0",
                 "", 320, 480, true, "0", false, "http://mrp.rubiconproject.com/", "CDBBF1A037F60134162922000B3510F7", "111315", 7));
 
+        adUnitList.add(new AdUnit(-1, "RFM/Mopub Native Ads list", "6b8e00b9ac584364931aa22b2a17f05c",
+                AdUnit.AdType.NATIVE_MOPUB_AD, 1, 0, AdUnit.LocationType.NORMAL, "6", "0.0", "0.0",
+                "", 320, 480, true, "0", false, "http://mrp.rubiconproject.com/", "CDBBF1A037F60134162922000B3510F7", "111315", 7));
+
         sqLiteDatabase.execSQL(DATABASE_CREATE);
         sqLiteDatabase.beginTransaction();
 
@@ -157,3 +156,4 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         onCreate(database);
     }
 }
+

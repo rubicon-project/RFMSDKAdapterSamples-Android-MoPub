@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2016. Rubicon Project. All rights reserved
- *
- */
 package com.rfm.mopubadaptersample;
 
 import com.mopub.common.MoPub;
