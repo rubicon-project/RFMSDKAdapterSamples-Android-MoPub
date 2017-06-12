@@ -43,7 +43,7 @@ public class RFMMopubRewardedVideoAdapter extends CustomEventRewardedVideo {
 
 	public RFMMopubRewardedVideoAdapter() {
 		super();
-		localTargetingInfoHM.put("adp_version", "mp_adp_1.3.0");
+		localTargetingInfoHM.put("adp_version", "mp_adp_3.0.1");
 	}
 
 	private RFMRewardedVideoListener rfmListener = new RFMRewardedVideoListener();

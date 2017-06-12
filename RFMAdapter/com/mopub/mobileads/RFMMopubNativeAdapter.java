@@ -45,7 +45,7 @@ public class RFMMopubNativeAdapter extends CustomEventNative {
         private static boolean ENABLE_DEBUG_LOG = true;
 
         public RFMMopubNativeAdapter() {
-            localTargetingInfoHM.put("adp_version", "mp_adp_2.0.0");
+            localTargetingInfoHM.put("adp_version", "mp_adp_3.0.1");
         }
 
         // CustomEventNative implementation

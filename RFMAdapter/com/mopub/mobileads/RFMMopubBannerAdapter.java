@@ -48,7 +48,7 @@ public class RFMMopubBannerAdapter extends CustomEventBanner {
 	private HashMap<String, String> localTargetingInfoHM = new HashMap<String, String>();
 	
 	public RFMMopubBannerAdapter() {
-		localTargetingInfoHM.put("adp_version", "mp_adp_1.3.0");
+		localTargetingInfoHM.put("adp_version", "mp_adp_3.0.1");
 	}
 
 	@Override
@@ -122,7 +122,6 @@ public class RFMMopubBannerAdapter extends CustomEventBanner {
  			@Override
  			public void didDisplayAd(RFMAdView arg0) {
  				log("RFM Ad: displayed ");
- 				mCustomEventBannerListener.onBannerLoaded(mRFMBannerAdView);
  			}
 
  			@Override
@@ -156,17 +155,20 @@ public class RFMMopubBannerAdapter extends CustomEventBanner {
 
  			@Override
  			public  void onAdStateChangeEvent(RFMAdView adView, RFMAdViewEvent event) {
- 		        switch(event){
- 		      	  case FULL_SCREEN_AD_DISPLAYED:
- 		      		  log("RFM Ad: Full screen ad displayed");
- 		      		  mCustomEventBannerListener.onBannerClicked();
- 		      		  break;
- 		      	  case FULL_SCREEN_AD_DISMISSED:
- 		      		  log("RFM Ad: Full screen ad dismissed");
- 		      		  break;
- 		      	  default:
- 		      		  break;			                    	  
- 		        }
+				switch(event){
+					case FULL_SCREEN_AD_DISPLAYED:
+						log("RFM Ad: Full screen ad displayed");
+						break;
+					case FULL_SCREEN_AD_DISMISSED:
+						log("RFM Ad: Full screen ad dismissed");
+						break;
+					case AD_CLICKED:
+						log("RFM Ad: Banner Ad clicked");
+						mCustomEventBannerListener.onBannerClicked();
+						break;
+					default:
+						break;
+				}
  			}
 
 		});

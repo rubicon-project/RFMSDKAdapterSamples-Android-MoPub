@@ -43,7 +43,7 @@ public class RFMMopubInterstitialAdapter extends CustomEventInterstitial {
 	private HashMap<String, String> localTargetingInfoHM = new HashMap<String, String>();
 
 	public RFMMopubInterstitialAdapter() {
-		localTargetingInfoHM.put("adp_version", "mp_adp_1.3.0");
+		localTargetingInfoHM.put("adp_version", "mp_adp_3.0.1");
 	}
 
 	@Override
@@ -137,17 +137,21 @@ public class RFMMopubInterstitialAdapter extends CustomEventInterstitial {
 			@Override
 			public void onInterstitialAdDismissed(RFMAdView adView) {
 				log("RFM Ad: Interstitial ad dismissed");
+				mCustomEventInterstitialListener.onInterstitialDismissed();
 			}
 
 			@Override
-			public void onAdStateChangeEvent(RFMAdView arg0, RFMAdViewEvent event) {
+			public void onAdStateChangeEvent(RFMAdView adView, RFMAdViewEvent event) {
 				switch(event){
 					case FULL_SCREEN_AD_DISPLAYED:
 						log("RFM Ad: Full screen ad displayed");
-						mCustomEventInterstitialListener.onInterstitialClicked();
 						break;
 					case FULL_SCREEN_AD_DISMISSED:
 						log("RFM Ad: Full screen ad dismissed");
+						break;
+					case AD_CLICKED:
+						log("RFM Ad: Full screen ad clicked");
+						mCustomEventInterstitialListener.onInterstitialClicked();
 						break;
 					default:
 						break;
@@ -168,6 +172,7 @@ public class RFMMopubInterstitialAdapter extends CustomEventInterstitial {
 			@Override
 			public void didFailedToDisplayAd(RFMAdView arg0, String arg1) {
 				log("RFM Ad: Failed to display Ad");
+				mCustomEventInterstitialListener.onInterstitialFailed(MoPubErrorCode.UNSPECIFIED);
 			}
 
 		});

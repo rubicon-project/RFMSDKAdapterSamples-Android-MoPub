@@ -6,21 +6,21 @@ repositories {
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.rfm.mopubadaptersample"
         minSdkVersion 10
         targetSdkVersion 23
-        versionCode 5
-        versionName "2.0.0"
+        versionCode 6
+        versionName "3.0.1"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     sourceSets {
         main {
             java {
-                srcDir ".."+File.separator+".."+File.separator+"RFMAdapter"+File.separator+"sourcecode"
+                srcDir ".."+File.separator+".."+File.separator+"RFMAdapter"
             }
         }
         androidTest.setRoot('src/test')
@@ -40,6 +40,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:design:23.3.0'
+    compile 'com.android.support:multidex:1.0.1'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:cardview-v7:23.3.0'
     compile 'com.google.android.gms:play-services:8.4.0'
